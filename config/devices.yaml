@@ -1,0 +1,105 @@
+---
+SPINE1:
+  role: spine
+  site: eqlab
+  config:
+    ip_ints:
+      em0: 
+        instance: underlay
+        ipv4: 100.66.0.2/24
+
+SPINE2:
+  role: spine
+  site: eqlab
+  config:
+    ip_ints:
+      em0: 
+        instance: underlay
+        ipv4: 100.66.0.3/24
+
+ASW1:
+  role: leaf
+  site: eqlab
+  config:
+    ip_ints:
+      em0:
+        instance: underlay
+        ipv4: 100.66.0.4/24
+    vlan_ports:
+      access:
+        "xe-0/0/3":
+          descr: debian1
+          vlan: RACK_E1
+        "xe-0/0/4": 
+          descr: debian5
+          vlan: ROW_E
+    vlan_ints:
+      RACK_E1:
+        ipv4: 198.18.101.1/24
+      ROW_E:
+        ipv4: 198.18.201.251/24
+    
+ASW2:
+  role: leaf
+  site: eqlab
+  config:
+    ip_ints:
+      em0: 
+        instance: underlay
+        ipv4: 100.66.0.5/24
+    vlan_ports:
+      access:
+        "xe-0/0/3":
+          descr: debian2
+          vlan: RACK_E2
+        "xe-0/0/4":
+          descr: debian6
+          vlan: ROW_E
+    vlan_ints:
+      RACK_E2:
+        ipv4: 198.18.102.1/24
+      ROW_E:
+        ipv4: 198.18.201.252/24
+
+ASW3:
+  role: leaf
+  site: eqlab
+  config:
+    ip_ints:
+      em0: 
+        instance: underlay
+        ipv4: 100.66.0.6/24
+    vlan_ports:
+      access:
+        "xe-0/0/3":
+          descr: debian3
+          vlan: RACK_E3
+        "xe-0/0/4": 
+          vlan: ROW_E
+    vlan_ints:
+      RACK_E3:
+        ipv4: 198.18.103.1/24
+      ROW_E:
+        ipv4: 198.18.201.253/24
+
+ASW4:
+  role: leaf
+  site: eqlab
+  config:
+    ip_ints:
+      em0:
+        instance: underlay
+        ipv4: 100.66.0.7/24
+    vlan_ports:
+      access:
+        "xe-0/0/3":
+          descr: debian4
+          vlan: RACK_E4
+        "xe-0/0/4": 
+          vlan: ROW_E
+    vlan_ints:
+      RACK_E4:
+        ipv4: 198.18.104.1/24
+      ROW_E:
+        ipv4: 198.18.201.254/24
+

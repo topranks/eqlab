@@ -1,0 +1,88 @@
+---
+eqlab:
+  bgp:
+    evpn_as: 65187
+    rr_cluster: 1.1.1.1
+
+  vlans:
+    ROW_E:
+      id: 201
+      anycast_gw: 
+        ipv4: 198.18.201.1
+    RACK_E1:
+      id: 101
+    RACK_E2:
+      id: 102
+    RACK_E3:
+      id: 103
+    RACK_E4:
+      id: 104
+
+  default_instance: WMF_PROD
+  routing_instances:
+    WMF_PROD:
+      vni: 5000
+    CERF:
+      vni: 5001
+
+  devices:
+    SPINE1:
+      role: spine
+      loopback: 1.1.1.1
+    SPINE2:
+      role: spine
+      loopback: 2.2.2.2
+    ASW1:
+      role: leaf
+      loopback: 11.11.11.11
+    ASW2:
+      role: leaf
+      loopback: 12.12.12.12
+    ASW3:
+      role: leaf
+      loopback: 13.13.13.13
+    ASW4:
+      role: leaf
+      loopback: 14.14.14.14
+
+  links:
+    - nodes:
+        SPINE1: "xe-0/0/0"
+        ASW1: "xe-0/0/0"
+      v4_prefix: "10.1.1.0/31"
+
+    - nodes:
+        SPINE1: "xe-0/0/2"
+        ASW2: "xe-0/0/0"
+      v4_prefix: "10.2.1.0/31"
+
+    - nodes:
+        SPINE1: "xe-0/0/3"
+        ASW3: "xe-0/0/0"
+      v4_prefix: "10.3.1.0/31"
+
+    - nodes:
+        SPINE1: "xe-0/0/4"
+        ASW4: "xe-0/0/0"
+      v4_prefix: "10.4.1.0/31"
+
+    - nodes:
+        SPINE2: "xe-0/0/0"
+        ASW1: "xe-0/0/2"
+      v4_prefix: "10.1.2.0/31"
+
+    - nodes:
+        SPINE2: "xe-0/0/2"
+        ASW2: "xe-0/0/2"
+      v4_prefix: "10.2.2.0/31"
+
+    - nodes:
+        SPINE2: "xe-0/0/3"
+        ASW3: "xe-0/0/2"
+      v4_prefix: "10.3.2.0/31"
+
+    - nodes:
+        SPINE2: "xe-0/0/4"
+        ASW4: "xe-0/0/2"
+      v4_prefix: "10.4.2.0/31"
+
