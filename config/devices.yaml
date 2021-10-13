@@ -16,6 +16,18 @@ SPINE2:
       em0: 
         instance: underlay
         ipv4: 100.66.0.3/24
+      xe-0/0/5:
+        descr: "CR2"
+        ipv4: "10.2.3.0/31"
+    device_bgp:
+      routing_instance:
+        WMF_PROD:
+          groups:
+            CORE_ROUTERS:
+              export: "EXT_OUT"
+              peers:
+                "10.2.3.1":
+                  remote_as: 14907
 
 ASW1:
   role: leaf
