@@ -8,7 +8,8 @@ eqlab:
     ROW_E:
       id: 201
       anycast_gw: 
-        ipv4: 198.18.201.1
+        ipv4: "198.18.201.1"
+        ipv6: "2001:0470:6a7f:0090::1"
     RACK_E1:
       id: 101
     RACK_E2:
@@ -22,6 +23,13 @@ eqlab:
   routing_instances:
     WMF_PROD:
       vni: 5000
+      dynamic_bgp:
+        groups:
+          DYNAMIC_PEERS:
+            export: "DEFAULT_EVPN"
+            peer_as: 64600
+            md5: "$9$5T6AB1hrK8EcVw2gJZ69C" # test123
+
     CERF:
       vni: 5001
 

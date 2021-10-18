@@ -1,0 +1,64 @@
+Script started on 2021-10-14 01:32:15+01:00 [TERM="xterm-256color" TTY="/dev/pts/30" COLUMNS="170" LINES="44"]
+]0;cathal@officepc: ~/eqlab/saved_configs[01;32mcathal@officepc[00m:[01;34m~/eqlab/saved_configs[00m$ ssh 100.66.0.2
+Last login: Wed Oct 13 20:17:12 2021 from 100.66.0.1
+--- JUNOS 19.4R1.10 built 2019-12-19 03:54:05 UTC
+{master:0}
+cathal@SPINE1> exit 
+
+Connection to 100.66.0.2 closed.
+]0;cathal@officepc: ~/eqlab/saved_configs[01;32mcathal@officepc[00m:[01;34m~/eqlab/saved_configs[00m$ ssh 100.66.0.2[K3[K4
+Last login: Wed Oct 13 22:13:35 2021 from 100.66.0.1
+--- JUNOS 19.4R1.10 built 2019-12-19 03:54:05 UTC
+{master:0}
+cathal@ASW1> show on   c      configuration | display set 
+set version 20191212.201431_builder.r1074901
+set system host-name ASW1
+set system root-authentication encrypted-password "$6$gcnspscc$mF8B4D7wfqLdeyZ/Tx0pruwpGvEzpume7rJpU9hb.DQGBGlGU2s6pvCdByGYhPfSVPptROE9MGTxbO9PdvMQn1"
+set system login user cathal uid 2000
+set system login user cathal class super-user
+set system login user cathal authentication ssh-ed25519 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8GQKaT22CZdxJcpLNsq1LYm9bTeI7xnblYrrx8HXQH"
+set system services ssh root-login allow
+set system syslog user * any emergency
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set system extensions providers juniper license-type juniper deployment-scope commercial
+set system extensions providers chef license-type juniper deployment-scope commercial
+set interfaces xe-0/0/0 description "SPINE1 xe-0/0/0"
+set interfaces xe-0/0/0 unit 0 family inet address 10.1.1.1/31
+set interfaces xe-0/0/0 unit 0 family inet6
+set interfaces xe-0/0/2 description "SPINE2 xe-0/0/0"
+set interfaces xe-0/0/2 unit 0 family inet address 10.1.2.1/31
+set interfaces xe-0/0/2 unit 0 family inet6
+set interfaces xe-0/0/3 description debian1
+set interfaces xe-0/0/3 unit 0 family ethernet-switching interface-mode access
+set interfaces xe-0/0/3 unit 0 family ethernet-switching vlan members RACK_E1
+set interfaces xe-0/0/4 description debian5
+set interfaces xe-0/0/4 unit 0 family ethernet-switching interface-mode access
+set interfaces xe-0/0/4 unit 0 family ethernet-switching vlan members ROW_E
+set interfaces em0 unit 0 family inet address 100.66.0.4/24
+set interfaces em1 description "LINK TO vQFX PFE"
+set interfaces em1 unit 0 family inet address 169.254.0.2/24
+set interfaces irb unit 101 description "RACK_E1 GW"
+set interfaces irb unit 101 family inet address 198.18.101.1/24
+set interfaces irb unit 201 virtual-gateway-accept-data
+set interfaces irb unit 201 description "ROW_E GW"
+set interfaces irb unit 201 family inet address 198.18.201.251/24 virtual-gateway-address 198.18.201.1
+set interfaces lo0 unit 0 description "System Loopback"
+set interfaces lo0 unit 0 family inet address 11.11.11.11/32
+set interfaces lo0 unit 1 description "WMF_PROD Instance"
+set interfaces lo0 unit 1 family inet
+set interfaces lo0 unit 1 family inet6
+set forwarding-options storm-control-profiles default all
+set forwarding-options vxlan-routing overlay-ecmp
+set policy-options policy-statement ECMP_ON then load-balance per-packet
+set policy-options policy-statement EXPORT_EVPN term TERM_1 from protocol evpn
+set policy-options policy-statement EXPORT_EVPN term TERM_1 from route-filter 0.0.0.0/0 prefix-length-range /32-/32
+---(more)---                                        set policy-options policy-statement EXPORT_EVPN term TERM_1 then accept
+set policy-options policy-statement EXPORT_EVPN term TERM_2 from protocol direct
+set policy-options policy-statement EXPORT_EVPN term TERM_2 then accept
+set policy-options policy-statement EXPORT_EVPN term TERM_3 from protocol static
+set policy-options policy-statement EXPORT_EVPN term TERM_3 then accept
+set policy-options policy-statement EXPORT_EVPN term TERM_4 from family inet6
+set policy-options policy-statement EXPORT_EVPN term TERM_4 from protocol evpn
+set policy

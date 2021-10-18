@@ -1,0 +1,24 @@
+ip link add link eth0 name eth0.101 type vlan id 101
+ip link add link eth0 name eth0.102 type vlan id 102
+ip link add link eth0 name eth0.103 type vlan id 103
+ip link add link eth0 name eth0.104 type vlan id 104
+ip link add link eth0 name eth0.201 type vlan id 201
+
+ip link set dev eth0.101 up
+ip link set dev eth0.102 up
+ip link set dev eth0.103 up
+ip link set dev eth0.104 up
+ip link set dev eth0.201 up
+
+ip addr add 198.18.101.21/24 dev eth0.101
+ip addr add 198.18.102.21/24 dev eth0.102
+ip addr add 198.18.103.21/24 dev eth0.103
+ip addr add 198.18.104.21/24 dev eth0.104
+ip addr add 198.18.201.21/24 dev eth0.201
+
+ip link set dev eth0.101 up
+ip link set dev eth0.102 up
+ip link set dev eth0.103 up
+ip link set dev eth0.104 up
+ip link set dev eth0.201 up
+ip link set dev eth0 up

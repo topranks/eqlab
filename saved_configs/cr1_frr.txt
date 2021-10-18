@@ -1,0 +1,28 @@
+ipv6 forwarding
+service integrated-vtysh-config
+!
+router bgp 14907
+ neighbor 10.2.3.2 remote-as 65187
+ neighbor 2001:470:6a7f:83::2 remote-as 65187
+ !
+ address-family ipv4 unicast
+  neighbor 10.2.3.2 default-originate
+  neighbor 10.2.3.2 soft-reconfiguration inbound
+  neighbor 10.2.3.2 route-map BGP:ACCEPT-ALL in
+  neighbor 10.2.3.2 route-map BGP:SPINE-OUT out
+  no neighbor 2001:470:6a7f:83::2 activate
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  neighbor 2001:470:6a7f:83::2 activate
+  neighbor 2001:470:6a7f:83::2 default-originate
+  neighbor 2001:470:6a7f:83::2 soft-reconfiguration inbound
+  neighbor 2001:470:6a7f:83::2 route-map BGP:ACCEPT-ALL in
+  neighbor 2001:470:6a7f:83::2 route-map BGP:SPINE-OUT out
+ exit-address-family
+!
+route-map BGP:ACCEPT-ALL permit 100
+!
+route-map BGP:SPINE-OUT permit 100
+!
+

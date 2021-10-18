@@ -7,6 +7,37 @@ SPINE1:
       em0: 
         instance: underlay
         ipv4: 100.66.0.2/24
+      xe-0/0/5:
+        descr: "CR1"
+        ipv4: "10.2.3.2/31"
+        ipv6: "2001:0470:6a7f:0083::2/64"
+    vlan_ports:
+      trunk:
+        "xe-0/0/6":
+          descr: lvs_test
+          members:
+            - RACK_E1
+            - RACK_E2
+            - RACK_E3
+            - RACK_E4
+            - ROW_E
+    device_bgp:
+      routing_instance:
+        WMF_PROD:
+          groups:
+            CORE_ROUTERS:
+              export: "EXT_OUT"
+              peers:
+                "10.2.3.3":
+                  descr: CR1
+                  peer_as: 14907
+          v6_groups:
+            CORE_ROUTERS_V6:
+              export: "EXTV6_OUT"
+              peers:
+                "2001:0470:6a7f:0083::1":
+                  descr: CR1
+                  peer_as: 14907
 
 SPINE2:
   role: spine
@@ -19,6 +50,17 @@ SPINE2:
       xe-0/0/5:
         descr: "CR2"
         ipv4: "10.2.3.0/31"
+        ipv6: "2001:0470:6a7f:0084::2/64"
+    vlan_ports:
+      trunk:
+        "xe-0/0/6":
+          descr: TestSW
+          members:
+            - RACK_E1
+            - RACK_E2
+            - RACK_E3
+            - RACK_E4
+            - ROW_E
     device_bgp:
       routing_instance:
         WMF_PROD:
@@ -27,7 +69,15 @@ SPINE2:
               export: "EXT_OUT"
               peers:
                 "10.2.3.1":
-                  remote_as: 14907
+                  descr: CR2
+                  peer_as: 14907
+          v6_groups:
+            CORE_ROUTERS_V6:
+              export: "EXTV6_OUT"
+              peers:
+                "2001:0470:6a7f:0084::1":
+                  descr: CR1
+                  peer_as: 14907
 
 ASW1:
   role: leaf
@@ -47,10 +97,13 @@ ASW1:
           vlan: ROW_E
     vlan_ints:
       RACK_E1:
-        ipv4: 198.18.101.1/24
+        ipv4: "198.18.101.1/24"
+        ipv6: "2001:0470:6a7f:0091::1/64"
       ROW_E:
-        ipv4: 198.18.201.251/24
-    
+        ipv4: "198.18.201.251/24"
+        ipv6: "2001:0470:6a7f:0090::251/64"
+             
+ 
 ASW2:
   role: leaf
   site: eqlab
@@ -69,9 +122,11 @@ ASW2:
           vlan: ROW_E
     vlan_ints:
       RACK_E2:
-        ipv4: 198.18.102.1/24
+        ipv4: "198.18.102.1/24"
+        ipv6: "2001:0470:6a7f:0092::1/64"
       ROW_E:
-        ipv4: 198.18.201.252/24
+        ipv4: "198.18.201.252/24"
+        ipv6: "2001:0470:6a7f:0090::252/64"
 
 ASW3:
   role: leaf
@@ -90,9 +145,11 @@ ASW3:
           vlan: ROW_E
     vlan_ints:
       RACK_E3:
-        ipv4: 198.18.103.1/24
+        ipv4: "198.18.103.1/24"
+        ipv6: "2001:0470:6a7f:0093::1/64"
       ROW_E:
-        ipv4: 198.18.201.253/24
+        ipv4: "198.18.201.253/24"
+        ipv6: "2001:0470:6a7f:0090::253/64"
 
 ASW4:
   role: leaf
@@ -111,7 +168,11 @@ ASW4:
           vlan: ROW_E
     vlan_ints:
       RACK_E4:
-        ipv4: 198.18.104.1/24
+        ipv4: "198.18.104.1/24"
+        ipv6: "2001:0470:6a7f:0094::1/64"
       ROW_E:
-        ipv4: 198.18.201.254/24
+        ipv4: "198.18.201.254/24"
+        ipv6: "2001:0470:6a7f:0090::254/64"
+
+
 

@@ -1,0 +1,14 @@
+ip router-id 198.18.101.10
+!
+router bgp 64600
+ neighbor 198.18.101.1 remote-as 65187
+ neighbor 198.18.101.1 password test123
+ !
+ address-family ipv4 unicast
+  neighbor 198.18.101.1 soft-reconfiguration inbound
+  neighbor 198.18.101.1 route-map BGP:ACCEPT-ALL in
+  neighbor 198.18.101.1 route-map BGP:ACCEPT-ALL out
+ exit-address-family
+!
+route-map BGP:ACCEPT-ALL permit 100
+!
