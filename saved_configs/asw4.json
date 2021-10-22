@@ -1,0 +1,739 @@
+{
+    "configuration" : {
+        "@" : {
+            "junos:commit-seconds" : "1634888619", 
+            "junos:commit-localtime" : "2021-10-22 07:43:39 UTC", 
+            "junos:commit-user" : "cathal"
+        }, 
+        "version" : "20191212.201431_builder.r1074901", 
+        "system" : {
+            "host-name" : "ASW4", 
+            "root-authentication" : {
+                "encrypted-password" : "$6$gcnspscc$mF8B4D7wfqLdeyZ/Tx0pruwpGvEzpume7rJpU9hb.DQGBGlGU2s6pvCdByGYhPfSVPptROE9MGTxbO9PdvMQn1"
+            }, 
+            "login" : {
+                "user" : [
+                {
+                    "name" : "cathal", 
+                    "uid" : 2000, 
+                    "class" : "super-user", 
+                    "authentication" : {
+                        "ssh-ed25519" : [
+                        {
+                            "name" : "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8GQKaT22CZdxJcpLNsq1LYm9bTeI7xnblYrrx8HXQH"
+                        }
+                        ]
+                    }
+                }
+                ]
+            }, 
+            "services" : {
+                "ssh" : {
+                    "root-login" : "allow"
+                }
+            }, 
+            "arp" : {
+                "aging-timer" : 10
+            }, 
+            "syslog" : {
+                "user" : [
+                {
+                    "name" : "*", 
+                    "contents" : [
+                    {
+                        "name" : "any", 
+                        "emergency" : [null]
+                    }
+                    ]
+                }
+                ], 
+                "file" : [
+                {
+                    "name" : "messages", 
+                    "contents" : [
+                    {
+                        "name" : "any", 
+                        "notice" : [null]
+                    }, 
+                    {
+                        "name" : "authorization", 
+                        "info" : [null]
+                    }
+                    ]
+                }, 
+                {
+                    "name" : "interactive-commands", 
+                    "contents" : [
+                    {
+                        "name" : "interactive-commands", 
+                        "any" : [null]
+                    }
+                    ]
+                }
+                ]
+            }, 
+            "extensions" : {
+                "providers" : [
+                {
+                    "name" : "juniper", 
+                    "license-type" : [
+                    {
+                        "name" : "juniper", 
+                        "deployment-scope" : ["commercial"]
+                    }
+                    ]
+                }, 
+                {
+                    "name" : "chef", 
+                    "license-type" : [
+                    {
+                        "name" : "juniper", 
+                        "deployment-scope" : ["commercial"]
+                    }
+                    ]
+                }
+                ]
+            }
+        }, 
+        "interfaces" : {
+            "interface" : [
+            {
+                "name" : "xe-0/0/0", 
+                "description" : "SPINE1 xe-0/0/4", 
+                "unit" : [
+                {
+                    "name" : 0, 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "10.4.1.1/31"
+                            }
+                            ]
+                        }, 
+                        "inet6" : [null]
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "xe-0/0/2", 
+                "description" : "SPINE2 xe-0/0/4", 
+                "unit" : [
+                {
+                    "name" : 0, 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "10.4.2.1/31"
+                            }
+                            ]
+                        }, 
+                        "inet6" : [null]
+                    }
+                }
+                ]
+            },                          
+            {
+                "name" : "xe-0/0/3", 
+                "description" : "debian4", 
+                "unit" : [
+                {
+                    "name" : 0, 
+                    "family" : {
+                        "ethernet-switching" : {
+                            "interface-mode" : "access", 
+                            "vlan" : {
+                                "members" : ["RACK_E4"]
+                            }
+                        }
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "xe-0/0/4", 
+                "description" : "ACCESS ROW_E", 
+                "unit" : [
+                {
+                    "name" : 0,         
+                    "family" : {
+                        "ethernet-switching" : {
+                            "interface-mode" : "access", 
+                            "vlan" : {
+                                "members" : ["ROW_E"]
+                            }
+                        }
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "em0", 
+                "unit" : [
+                {
+                    "name" : 0, 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "100.66.0.7/24"
+                            }
+                            ]           
+                        }
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "em1", 
+                "description" : "LINK TO vQFX PFE", 
+                "unit" : [
+                {
+                    "name" : 0, 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "169.254.0.2/24"
+                            }
+                            ]
+                        }
+                    }
+                }
+                ]
+            },                          
+            {
+                "name" : "irb", 
+                "unit" : [
+                {
+                    "name" : 104, 
+                    "description" : "RACK_E4 GW", 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "198.18.104.1/24"
+                            }
+                            ]
+                        }, 
+                        "inet6" : {
+                            "address" : [
+                            {
+                                "name" : "2001:0470:6a7f:0094::1/64"
+                            }
+                            ]
+                        }
+                    }
+                },                      
+                {
+                    "name" : 201, 
+                    "virtual-gateway-accept-data" : [null], 
+                    "description" : "ROW_E GW", 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "198.18.201.254/24", 
+                                "virtual-gateway-address" : "198.18.201.1"
+                            }
+                            ]
+                        }, 
+                        "inet6" : {
+                            "address" : [
+                            {
+                                "name" : "2001:0470:6a7f:0090::254/64", 
+                                "virtual-gateway-address" : "2001:0470:6a7f:0090::1"
+                            }
+                            ]
+                        }
+                    }                   
+                }
+                ]
+            }, 
+            {
+                "name" : "lo0", 
+                "unit" : [
+                {
+                    "name" : 0, 
+                    "description" : "System Loopback", 
+                    "family" : {
+                        "inet" : {
+                            "address" : [
+                            {
+                                "name" : "14.14.14.14/32"
+                            }
+                            ]
+                        }
+                    }
+                }, 
+                {
+                    "name" : 1, 
+                    "description" : "WMF_PROD Instance", 
+                    "family" : {        
+                        "inet" : [null], 
+                        "inet6" : [null]
+                    }
+                }
+                ]
+            }
+            ]
+        }, 
+        "forwarding-options" : {
+            "storm-control-profiles" : [
+            {
+                "name" : "default", 
+                "all" : [null]
+            }
+            ], 
+            "vxlan-routing" : {
+                "overlay-ecmp" : [null]
+            }
+        }, 
+        "policy-options" : {
+            "policy-statement" : [
+            {
+                "name" : "DEFAULT_EVPN", 
+                "term" : [
+                {
+                    "name" : "DEFAULT_V4", 
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "route-filter" : [
+                        {
+                            "address" : "0.0.0.0/0", 
+                            "exact" : [null]
+                        }
+                        ]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {
+                    "name" : "DEFAULT_V6", 
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "route-filter" : [
+                        {
+                            "address" : "::/0", 
+                            "exact" : [null]
+                        }
+                        ]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "ECMP_ON", 
+                "then" : {
+                    "load-balance" : {
+                        "per-packet" : [null]
+                    }
+                }
+            }, 
+            {
+                "name" : "EXPORT_EVPN", 
+                "term" : [
+                {
+                    "name" : "TERM_1",  
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "route-filter" : [
+                        {
+                            "address" : "0.0.0.0/0", 
+                            "prefix-length-range" : "/32-/32"
+                        }
+                        ]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {
+                    "name" : "TERM_2", 
+                    "from" : {
+                        "protocol" : ["direct"]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {                       
+                    "name" : "TERM_3", 
+                    "from" : {
+                        "protocol" : ["static"]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {
+                    "name" : "TERM_4", 
+                    "from" : {
+                        "family" : "inet6", 
+                        "protocol" : ["evpn"],
+                        "route-filter" : [
+                        {
+                            "address" : "0::0/0", 
+                            "prefix-length-range" : "/128-/128"
+                        }
+                        ]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }                   
+                }, 
+                {
+                    "name" : "TERM_5", 
+                    "from" : {
+                        "protocol" : ["bgp"]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {
+                    "name" : "TERM_6", 
+                    "from" : {
+                        "protocol" : ["local"]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "EXTV6_OUT",   
+                "term" : [
+                {
+                    "name" : "EVPN_LVS", 
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "as-path" : ["LOCAL_LVS"]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {
+                    "name" : "EVPN_NETWORKS", 
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "route-filter" : [
+                        {
+                            "address" : "::/0", 
+                            "prefix-length-range" : "/0-/64"
+                        }
+                        ]
+                    }, 
+                    "then" : {          
+                        "accept" : [null]
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "EXT_OUT", 
+                "term" : [
+                {
+                    "name" : "EVPN_LVS", 
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "as-path" : ["LOCAL_LVS"]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }, 
+                {
+                    "name" : "EVPN_NETWORKS", 
+                    "from" : {
+                        "protocol" : ["evpn"],
+                        "route-filter" : [
+                        {
+                            "address" : "0.0.0.0/0", 
+                            "prefix-length-range" : "/0-/29"
+                        }
+                        ]
+                    }, 
+                    "then" : {
+                        "accept" : [null]
+                    }
+                }
+                ]
+            }, 
+            {
+                "name" : "NONE", 
+                "then" : {
+                    "reject" : [null]
+                }
+            }
+            ], 
+            "as-path" : [
+            {
+                "name" : "LOCAL_LVS", 
+                "path" : "^64600$"      
+            }
+            ]
+        }, 
+        "routing-instances" : {
+            "instance" : [
+            {
+                "name" : "WMF_PROD", 
+                "routing-options" : {
+                    "multipath" : [null]
+                }, 
+                "protocols" : {
+                    "evpn" : {
+                        "ip-prefix-routes" : {
+                            "advertise" : "direct-nexthop", 
+                            "encapsulation" : "vxlan", 
+                            "vni" : 5000, 
+                            "export" : ["EXPORT_EVPN"]
+                        }
+                    }, 
+                    "bgp" : {
+                        "group" : [
+                        {
+                            "name" : "DYNAMIC_PEERS_V4", 
+                            "type" : "external", 
+                            "family" : {
+                                "inet" : {
+                                    "unicast" : [null]
+                                }
+                            }, 
+                            "authentication-key" : "$9$5T6AB1hrK8EcVw2gJZ69C", 
+                            "export" : ["DEFAULT_EVPN"],
+                            "peer-as" : "64600", 
+                            "dynamic-neighbor" : [
+                            {
+                                "name" : "RACK_E4", 
+                                "allow" : ["198.18.104.0/24"]
+                            }, 
+                            {
+                                "name" : "ROW_E", 
+                                "allow" : ["198.18.201.0/24"]
+                            }
+                            ]
+                        }, 
+                        {
+                            "name" : "DYNAMIC_PEERS_V6", 
+                            "type" : "external", 
+                            "family" : {
+                                "inet6" : {
+                                    "unicast" : [null]
+                                }
+                            }, 
+                            "authentication-key" : "$9$5T6AB1hrK8EcVw2gJZ69C", 
+                            "export" : ["DEFAULT_EVPN"],
+                            "peer-as" : "64600", 
+                            "dynamic-neighbor" : [
+                            {
+                                "name" : "RACK_E4", 
+                                "allow" : ["2001:470:6a7f:94::/64"]
+                            }, 
+                            {
+                                "name" : "ROW_E", 
+                                "allow" : ["2001:470:6a7f:90::/64"]
+                            }
+                            ]
+                        }
+                        ], 
+                        "local-as" : {
+                            "as-number" : "65187"
+                        }               
+                    }
+                }, 
+                "instance-type" : "vrf", 
+                "forwarding-options" : {
+                    "dhcp-relay" : {
+                        "relay-option-82" : {
+                            "circuit-id" : {
+                                "prefix" : {
+                                    "host-name" : [null]
+                                }
+                            }
+                        }, 
+                        "forward-only" : [null], 
+                        "server-group" : {
+                            "server-group" : [
+                            {
+                                "name" : "INSTALL-SERVER", 
+                                "address" : [
+                                {
+                                    "name" : "198.18.67.1"
+                                }
+                                ]
+                            }           
+                            ]
+                        }, 
+                        "group" : [
+                        {
+                            "name" : "DHCP-RELAY", 
+                            "active-server-group" : {
+                                "active-server-group" : "INSTALL-SERVER"
+                            }, 
+                            "interface" : [
+                            {
+                                "name" : "irb.104"
+                            }, 
+                            {
+                                "name" : "irb.201"
+                            }
+                            ]
+                        }
+                        ]
+                    }
+                }, 
+                "interface" : [
+                {
+                    "name" : "irb.104"  
+                }, 
+                {
+                    "name" : "irb.201"
+                }, 
+                {
+                    "name" : "lo0.1"
+                }
+                ], 
+                "route-distinguisher" : {
+                    "rd-type" : "14.14.14.14:5000"
+                }, 
+                "vrf-target" : {
+                    "community" : "target:65187:5000"
+                }
+            }
+            ]
+        }, 
+        "routing-options" : {
+            "forwarding-table" : {
+                "export" : ["ECMP_ON"],
+                "chained-composite-next-hop" : {
+                    "ingress" : {
+                        "evpn" : [null] 
+                    }
+                }
+            }, 
+            "router-id" : "14.14.14.14", 
+            "autonomous-system" : {
+                "as-number" : "65187"
+            }
+        }, 
+        "protocols" : {
+            "ospf" : {
+                "area" : [
+                {
+                    "name" : "0.0.0.0", 
+                    "interface" : [
+                    {
+                        "name" : "xe-0/0/0.0", 
+                        "interface-type" : "p2p"
+                    }, 
+                    {
+                        "name" : "xe-0/0/2.0", 
+                        "interface-type" : "p2p"
+                    }, 
+                    {                   
+                        "name" : "lo0.0", 
+                        "passive" : [null]
+                    }
+                    ]
+                }
+                ]
+            }, 
+            "evpn" : {
+                "encapsulation" : "vxlan", 
+                "multicast-mode" : "ingress-replication", 
+                "extended-vni-list" : ["all"]
+            }, 
+            "bgp" : {
+                "group" : [
+                {
+                    "name" : "EVPN_RR", 
+                    "type" : "internal", 
+                    "local-address" : "14.14.14.14", 
+                    "family" : {
+                        "evpn" : {
+                            "signaling" : [null]
+                        }
+                    },                  
+                    "multipath" : [null], 
+                    "bfd-liveness-detection" : {
+                        "minimum-interval" : 30000, 
+                        "multiplier" : 3, 
+                        "session-mode" : "automatic"
+                    }, 
+                    "neighbor" : [
+                    {
+                        "name" : "1.1.1.1"
+                    }, 
+                    {
+                        "name" : "2.2.2.2"
+                    }
+                    ]
+                }
+                ]
+            }, 
+            "l2-learning" : {
+                "global-mac-table-aging-time" : 1200, 
+                "global-mac-ip-table-aging-time" : 600
+            }, 
+            "lldp" : {
+                "interface" : [         
+                {
+                    "name" : "all"
+                }
+                ]
+            }, 
+            "igmp-snooping" : {
+                "vlan" : [
+                {
+                    "name" : "default"
+                }
+                ]
+            }
+        }, 
+        "switch-options" : {
+            "vtep-source-interface" : {
+                "interface-name" : "lo0.0"
+            }, 
+            "route-distinguisher" : {
+                "rd-type" : "14.14.14.14:65187"
+            }, 
+            "vrf-target" : {
+                "community" : "target:65187:9999", 
+                "auto" : [null]         
+            }
+        }, 
+        "vlans" : {
+            "vlan" : [
+            {
+                "name" : "RACK_E4", 
+                "vlan-id" : 104, 
+                "l3-interface" : "irb.104", 
+                "vxlan" : {
+                    "vni" : 104000
+                }
+            }, 
+            {
+                "name" : "ROW_E", 
+                "vlan-id" : 201, 
+                "l3-interface" : "irb.201", 
+                "vxlan" : {
+                    "vni" : 201000
+                }
+            }, 
+            {
+                "name" : "default", 
+                "vlan-id" : 1           
+            }
+            ]
+        }
+    }
+}

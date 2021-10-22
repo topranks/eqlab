@@ -11,6 +11,8 @@ SPINE1:
         descr: "CR1"
         ipv4: "10.2.3.2/31"
         ipv6: "2001:0470:6a7f:0083::2/64"
+        #ipv4_filter: BLOCK1111
+        #ipv6_filter: BLOCKUS
     vlan_ports:
       trunk:
         "xe-0/0/6":
@@ -51,6 +53,8 @@ SPINE2:
         descr: "CR2"
         ipv4: "10.2.3.0/31"
         ipv6: "2001:0470:6a7f:0084::2/64"
+        #ipv4_filter: BLOCK1111
+        #ipv6_filter: BLOCKUS
     vlan_ports:
       trunk:
         "xe-0/0/6":
@@ -99,6 +103,8 @@ ASW1:
       RACK_E1:
         ipv4: "198.18.101.1/24"
         ipv6: "2001:0470:6a7f:0091::1/64"
+        #ipv4_filter: BLOCK1111
+        #ipv6_filter: BLOCKUS
       ROW_E:
         ipv4: "198.18.201.251/24"
         ipv6: "2001:0470:6a7f:0090::251/64"

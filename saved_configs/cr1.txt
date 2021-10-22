@@ -10,3 +10,5 @@ ip route add ::/0 via 2001:470:6A7F:81::1
 ip link set dev eth2 up
 ip addr add 2001:0470:6a7f:0083::1/64 dev eth0
 
+sysctl -w net.ipv6.conf.all.forwarding=1
+sysctl -w net.ipv4.conf.all.forwarding=1

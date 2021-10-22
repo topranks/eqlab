@@ -1,11 +1,9 @@
-ipv6 forwarding
-service integrated-vtysh-config
-!
 router bgp 14907
  neighbor 10.2.3.2 remote-as 65187
  neighbor 2001:470:6a7f:83::2 remote-as 65187
  !
  address-family ipv4 unicast
+  redistribute connected route-map DHCP-NET
   neighbor 10.2.3.2 default-originate
   neighbor 10.2.3.2 soft-reconfiguration inbound
   neighbor 10.2.3.2 route-map BGP:ACCEPT-ALL in
@@ -21,8 +19,12 @@ router bgp 14907
   neighbor 2001:470:6a7f:83::2 route-map BGP:SPINE-OUT out
  exit-address-family
 !
+ip prefix-list PFX:DHCP seq 5 permit 198.18.67.0/30
+!
 route-map BGP:ACCEPT-ALL permit 100
 !
 route-map BGP:SPINE-OUT permit 100
 !
-
+route-map DHCP-NET permit 100
+ match ip address prefix-list PFX:DHCP
+!

@@ -33,6 +33,9 @@ eqlab:
     CERF:
       vni: 5001
 
+  dhcp_servers:
+    - 198.18.67.1
+
   devices:
     SPINE1:
       role: spine
